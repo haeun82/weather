@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetToday } from '../features/today/todaySlice';
+import { fetchGetToday, fetchWeatherToday } from '../features/today/todaySlice';
 import styled from 'styled-components';
 
 const TestText = styled.div`
@@ -14,29 +14,32 @@ const TestText = styled.div`
     }
 `;
 
-function Today(props) {
+function Today(prors) {
   const dispatch = useDispatch();
-  const {getToday, loading, error} = useSelector((state) => state.today);
+  const {weatherToday, loading, error} = useSelector((state) => state.weathers);
 
 
   useEffect(() => {
-    dispatch(fetchGetToday)
+    dispatch(fetchWeatherToday())
   }, [dispatch]);
   
-  console.log(getToday)
+  console.log(weatherToday);
+  
+  
   
   if(loading){return <p>loading...</p>}
   if(error){return <p>{error}</p>}
   return (
     <>
-      {getToday&&(
+      {weatherToday&&(
         <TestText>
-        {/* <p>
+        <p>
         오늘의 날씨
-        </p> */}
-        {getToday.map((today) => (
+        </p>
+        {/* {getWeatherToday.map((today) => (
           <li>today</li>
-        )) }
+        )) } */}
+        {/* <h4>{weatherToday.name}</h4> */}
       </TestText>
       )}
     </>

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getToday } from "../../api/weatherapi";
+import { getWeatherToday } from "../../api/weatherapi";
 import { data } from "react-router-dom";
 
 // const initialState = {
@@ -10,18 +10,20 @@ import { data } from "react-router-dom";
 //   // status: 'idel'
 // }
 
-export const fetchGetToday = createAsyncThunk('weather/fetchGetToday', async()=>{
-  const response = await getToday();
+export const fetchWeatherToday = createAsyncThunk('weather/fetchWeatherToday', async()=>{
+  const response = await getWeatherToday();
     return response.data
     
 })
 
-const todaySlice = createSlice({
-  name: 'today',
+// console.log(getToday);
+
+const weatherSlice = createSlice({
+  name: 'weathers',
   initialState:{
     loading:false,
     error:null,
-    getToday: null,
+    weatherToday: null,
   },
   reducers: {
     // getToday: (state, action) => {
@@ -30,15 +32,15 @@ const todaySlice = createSlice({
   },
   extraReducers:(builder)=>{
     builder
-      .addCase(fetchGetToday.pending,(state)=>{
+      .addCase(fetchWeatherToday.pending,(state)=>{
         state.loading = true
         state.error=null
       })
-      .addCase(fetchGetToday.fulfilled,(state,action)=>{
+      .addCase(fetchWeatherToday.fulfilled,(state,action)=>{
         state.loading = false
         state.getToday=action.payload
       })
-      .addCase(fetchGetToday.rejected,(state,action)=>{
+      .addCase(fetchWeatherToday.rejected,(state,action)=>{
         state.loading = false
         state.error = action.error.message
       })
@@ -52,4 +54,4 @@ const todaySlice = createSlice({
 // export const selectedTodayList = (state) => state.today.todayList;
 // export const selectStatus = (state) => state.today.status;
 
-export default todaySlice.reducer;
+export default weatherSlice.reducer;

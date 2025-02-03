@@ -9,8 +9,8 @@ const opwtApi = axios.create({
     accept: 'application/json',
   },
 })
-//오늘의 날씨 조회
-export const getToday = async () => {
+//오늘의 날씨 가져오기
+export const getWeatherToday = async () => {
     const response = await opwtApi.get('/weather',
       {
         params:{
@@ -24,3 +24,4 @@ export const getToday = async () => {
       return response;
     
 };
+
