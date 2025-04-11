@@ -38,7 +38,7 @@ const weatherSlice = createSlice({
       })
       .addCase(fetchWeatherToday.fulfilled,(state,action)=>{
         state.loading = false
-        state.getToday=action.payload
+        state.weatherToday=action.payload
       })
       .addCase(fetchWeatherToday.rejected,(state,action)=>{
         state.loading = false

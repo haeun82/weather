@@ -20,8 +20,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/header' element={<Header />}>
-            <Route path='today' element={<Today />} />
-            <Route path='week' element={<Week />} />
+            <Route path='/header/today' element={<Today />} />
+            <Route path='/header/week' element={<Week />} />
           </Route>
           <Route path='/footer' element={<Footer />} />
         </Routes>
