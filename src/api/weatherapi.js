@@ -25,3 +25,14 @@ export const getWeatherToday = async () => {
     
 };
 
+export const getWeather5days = async() => {
+  const response = await opwtApi.get('/forecast',{
+    params:{
+      q:'Incheon',
+      appid:AUTH_KEY,
+      units:'metric',
+      lang:'kr'
+    }
+  });
+  return response;
+}

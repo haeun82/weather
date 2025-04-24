@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Made = styled.div`
   width: 100%;
-  height: 50px;
+  height: 60px;
     p {
       text-align: center;
     }

@@ -2,7 +2,6 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import Header from './Header';
 import styled from 'styled-components';
-import styles from './css/Main.module.css';
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
 
@@ -25,7 +24,9 @@ function Main(props) {
       <ContentWrap>
         <Outlet />
       </ContentWrap>
-      <Footer />
+      <Footer>
+        &copy; 2025 My Weather App
+      </Footer>
     </MainStyle>
     
     </>

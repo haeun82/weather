@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getWeatherToday } from "../../api/weatherapi";
-import { data } from "react-router-dom";
+import { getWeatherToday,getWeather5days } from "../../api/weatherapi";
 
 // const initialState = {
 //   // todayList: [],
@@ -16,6 +15,11 @@ export const fetchWeatherToday = createAsyncThunk('weather/fetchWeatherToday', a
     
 })
 
+export const fetchWeather5days = createAsyncThunk('weather/fetchWeather5days', async()=>{
+  const response = await getWeather5days();
+  return response.data
+})
+
 // console.log(getToday);
 
 const weatherSlice = createSlice({
@@ -24,6 +28,7 @@ const weatherSlice = createSlice({
     loading:false,
     error:null,
     weatherToday: null,
+    Weather5days: null
   },
   reducers: {
     // getToday: (state, action) => {
@@ -44,6 +49,10 @@ const weatherSlice = createSlice({
         state.loading = false
         state.error = action.error.message
       })
+      .addCase(fetchWeather5days.fulfilled,(state,action)=>{
+        state.loading=false
+        state.weather5days=action.payload
+    })
   }
 });
 

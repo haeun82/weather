@@ -68,8 +68,9 @@ function Header(props) {
           </li>
         </Menu>
       </WeatherHeader>
+
+      <Outlet/>
     </>
-    
   );
 }
 
