@@ -4,6 +4,9 @@ import Header from './Header';
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
+import SearchForm from './SearchForm';
+import Today from './Today';
+import Week from './Week';
 
 const MainStyle = styled.div`
   display: flex;
@@ -21,12 +24,9 @@ function Main(props) {
     <>
     <MainStyle>
       <Header />
-      <ContentWrap>
-        <Outlet />
-      </ContentWrap>
-      <Footer>
-        &copy; 2025 My Weather App
-      </Footer>
+        <SearchForm />     
+        <Today />         
+        <Week />          
     </MainStyle>
     
     </>

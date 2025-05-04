@@ -1,5 +1,6 @@
-import axios from "axios";
+
 //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+import axios from "axios";
 const BASE_URL = 'https://api.openweathermap.org/data/2.5'
 const AUTH_KEY = 'db22b45aa0a4e3cc780eb0a58f2e46cd'
 
@@ -10,11 +11,11 @@ const opwtApi = axios.create({
   },
 })
 //오늘의 날씨 가져오기
-export const getWeatherToday = async () => {
+export const getWeatherToday = async (city = 'Incheon') => {
     const response = await opwtApi.get('/weather',
       {
         params:{
-          q:'Incheon',
+          q:city,
           appid:AUTH_KEY,
           units:'metric',
           lang:'kr'
@@ -25,10 +26,10 @@ export const getWeatherToday = async () => {
     
 };
 
-export const getWeather5days = async() => {
+export const getWeather5days = async(city = 'Incheon') => {
   const response = await opwtApi.get('/forecast',{
     params:{
-      q:'Incheon',
+      q:city,
       appid:AUTH_KEY,
       units:'metric',
       lang:'kr'

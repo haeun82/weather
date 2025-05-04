@@ -53,23 +53,8 @@ function Header(props) {
   return (
     <>
       <WeatherHeader>
-        <div className="top">
-          <span className="logo" onClick={() => navigate('/')}>
-            Weather
-          </span>
-          <span className="material-symbols-outlined icon">search</span>
-        </div>
-        <Menu>
-          <li>
-            <Link to="/header/today">Today</Link>
-          </li>
-          <li>
-            <Link to="/header/week">This Week</Link>
-          </li>
-        </Menu>
-      </WeatherHeader>
-
-      <Outlet/>
+        <span className="logo" onClick={() => navigate('/')}>Weather</span>
+    </WeatherHeader>
     </>
   );
 }

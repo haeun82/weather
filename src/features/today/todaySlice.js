@@ -9,14 +9,14 @@ import { getWeatherToday,getWeather5days } from "../../api/weatherapi";
 //   // status: 'idel'
 // }
 
-export const fetchWeatherToday = createAsyncThunk('weather/fetchWeatherToday', async()=>{
-  const response = await getWeatherToday();
+export const fetchWeatherToday = createAsyncThunk('weather/fetchWeatherToday', async(cityName = "Seoul")=>{
+  const response = await getWeatherToday(cityName);
     return response.data
     
 })
 
-export const fetchWeather5days = createAsyncThunk('weather/fetchWeather5days', async()=>{
-  const response = await getWeather5days();
+export const fetchWeather5days = createAsyncThunk('weather/fetchWeather5days', async(cityName = "Seoul")=>{
+  const response = await getWeather5days(cityName);
   return response.data
 })
 
@@ -49,10 +49,18 @@ const weatherSlice = createSlice({
         state.loading = false
         state.error = action.error.message
       })
-      .addCase(fetchWeather5days.fulfilled,(state,action)=>{
-        state.loading=false
-        state.weather5days=action.payload
-    })
+      .addCase(fetchWeather5days.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchWeather5days.fulfilled, (state, action) => {
+        state.loading = false;
+        state.weather5days = action.payload;
+      })
+      .addCase(fetchWeather5days.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   }
 });
 

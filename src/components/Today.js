@@ -19,7 +19,6 @@ const TodayStyle = styled.div`
 
 const TestText = styled.div`
   width: 500px;
-  height: 400px;
   background-color: rgb(239, 246, 255);
   margin: 0 auto;
   border-radius: 30px;
@@ -36,24 +35,30 @@ const TestText = styled.div`
       text-align: center;
     }
     ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+      margin-top: 20px;
+      width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-      li {
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
+        li {
+          font-size: 18px;
+          padding: 12px 16px;
+          border-radius: 12px;
+          background-color: #e6f0ff;
+          color: #333;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
   }
 `;
 
 const TodayOther = styled.div`
   width: 500px;
-  min-height: 400px;
   background-color: rgb(239, 246, 255);
   border-radius: 30px;
   padding: 30px;
@@ -71,18 +76,31 @@ const TodayOther = styled.div`
   }
 
   ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+}
 
     li {
       font-size: 18px;
-      margin-bottom: 10px;
+      padding: 12px 20px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #d2eaff, #b4dbff);
+      color: #003366;
+      box-shadow: 0 4px 8px rgba(0, 102, 204, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 12px rgba(0, 102, 204, 0.25);
+      }
     }
-  }  
 `;
 
 const LoadingWrapper = styled.div`
@@ -163,9 +181,9 @@ function Today(props) {
             </p>
           )}
           <ul style={{ listStyle: "none", padding: 0 }}>
-            <li>날씨: {weatherToday?.weather?.[0]?.description}</li>
-            <li>기온: {Math.round(weatherToday?.main?.temp)}°C</li>
-            <li>체감온도: {Math.round(weatherToday?.main?.feels_like)}°C</li>
+            <li>🌄날씨: {weatherToday?.weather?.[0]?.description}</li>
+            <li>🌡️기온: {Math.round(weatherToday?.main?.temp)}°C</li>
+            <li>🥵체감온도: {Math.round(weatherToday?.main?.feels_like)}°C</li>
           </ul>
           </TestText>
         )}
@@ -175,9 +193,10 @@ function Today(props) {
               그 외 정보
             </p>
             <ul style={{ listStyle: "none", padding: 0 }}>
-              <li>풍속: {weatherToday?.wind?.speed} m/s</li>
-              <li>기압: {weatherToday?.main?.pressure} hPa</li>
-
+              <li>⬆️최고기온: {Math.round(weatherToday?.main?.temp_max)}°C</li>
+              <li>⬇️최저기온: {Math.round(weatherToday?.main?.temp_min)}°C</li>
+              <li>💨풍속: {weatherToday?.wind?.speed} m/s</li>
+              <li>📈기압: {weatherToday?.main?.pressure} hPa</li>
             </ul>
           </TodayOther>
         )}

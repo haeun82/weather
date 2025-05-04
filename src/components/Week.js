@@ -12,11 +12,11 @@ const LoadingWrapper = styled.div`
   height: 100vh;
   background-color: rgb(152, 200, 255);
   flex-direction: column; 
-    p {
-        margin-top: 50px;
-        color: #fff;
-        font-size: 20px;
-      }
+  p {
+      margin-top: 50px;
+      color: #fff;
+      font-size: 20px;
+    }
 `;
 
 const Spinner = styled.div`
