@@ -12,10 +12,12 @@ const opwtApi = axios.create({
 })
 //오늘의 날씨 가져오기
 export const getWeatherToday = async (city = 'Incheon') => {
+  try {
+    const encodedCity = encodeURIComponent(city);
     const response = await opwtApi.get('/weather',
       {
         params:{
-          q:city,
+          q:`${encodedCity},KR`,
           appid:AUTH_KEY,
           units:'metric',
           lang:'kr'
@@ -23,17 +25,27 @@ export const getWeatherToday = async (city = 'Incheon') => {
       }
     );
       return response;
+  }  catch(error) {
+    throw new Error("도시를 찾을 수 없습니다. 정확한 도시명을 입력해주세요.")
+  }
+  
     
 };
 
 export const getWeather5days = async(city = 'Incheon') => {
-  const response = await opwtApi.get('/forecast',{
-    params:{
-      q:city,
-      appid:AUTH_KEY,
-      units:'metric',
-      lang:'kr'
-    }
-  });
-  return response;
-}
+  try  {
+    const encodedCity = encodeURIComponent(city);
+    const response = await opwtApi.get('/forecast',{
+      params:{
+        q:`${encodedCity},KR`,
+        appid:AUTH_KEY,
+        units:'metric',
+        lang:'kr'
+      }
+    });
+    return response;
+  } catch(error) {
+    throw new Error("도시를 찾을 수 없습니다.")
+  }
+  
+};
