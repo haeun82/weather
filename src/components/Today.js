@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchWeatherToday } from '../features/today/todaySlice';
 import styled from 'styled-components';
-import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
 
 
 const TodayStyle = styled.div`
   background-color: rgb(152, 200, 255);
   min-height: 100vh;
-  padding: 60px 20px 120px; /* 상단, 좌우, 하단 */
+  padding: 60px 20px 0px; /* 상단, 좌우, 하단 */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -57,51 +56,51 @@ const TestText = styled.div`
   }
 `;
 
-const TodayOther = styled.div`
-  width: 500px;
-  background-color: rgb(239, 246, 255);
-  border-radius: 30px;
-  padding: 30px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+// const TodayOther = styled.div`
+//   width: 500px;
+//   background-color: rgb(239, 246, 255);
+//   border-radius: 30px;
+//   padding: 30px;
+//   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
-  p {
-    text-align: center;
-    font-size: 30px;
-    color: #222;
-    padding-bottom: 20px;
-  }
+//   p {
+//     text-align: center;
+//     font-size: 30px;
+//     color: #222;
+//     padding-bottom: 20px;
+//   }
 
-  h2 {
-    font-size: 20px;
-  }
+//   h2 {
+//     font-size: 20px;
+//   }
 
-  ul {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0;
-  margin-top: 20px;
-  width: 100%;
-}
+//   ul {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 12px;
+//   padding: 0;
+//   margin-top: 20px;
+//   width: 100%;
+// }
 
-    li {
-      font-size: 18px;
-      padding: 12px 20px;
-      border-radius: 15px;
-      background: linear-gradient(135deg, #d2eaff, #b4dbff);
-      color: #003366;
-      box-shadow: 0 4px 8px rgba(0, 102, 204, 0.15);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.2s ease;
+//     li {
+//       font-size: 18px;
+//       padding: 12px 20px;
+//       border-radius: 15px;
+//       background: linear-gradient(135deg, #d2eaff, #b4dbff);
+//       color: #003366;
+//       box-shadow: 0 4px 8px rgba(0, 102, 204, 0.15);
+//       display: flex;
+//       align-items: center;
+//       gap: 10px;
+//       transition: transform 0.2s ease;
 
-      &:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 12px rgba(0, 102, 204, 0.25);
-      }
-    }
-`;
+//       &:hover {
+//         transform: translateY(-3px);
+//         box-shadow: 0 8px 12px rgba(0, 102, 204, 0.25);
+//       }
+//     }
+// `;
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -184,25 +183,26 @@ function Today(props) {
             <li>🌄날씨: {weatherToday?.weather?.[0]?.description}</li>
             <li>🌡️기온: {Math.round(weatherToday?.main?.temp)}°C</li>
             <li>🥵체감온도: {Math.round(weatherToday?.main?.feels_like)}°C</li>
+            <li>⬆️최고기온: {Math.round(weatherToday?.main?.temp_max)}°C</li>
+            <li>⬇️최저기온: {Math.round(weatherToday?.main?.temp_min)}°C</li>
           </ul>
           </TestText>
         )}
-        {weatherToday&&(
+        {/* {weatherToday&&(
           <TodayOther>
             <p>
               그 외 정보
             </p>
             <ul style={{ listStyle: "none", padding: 0 }}>
-              <li>⬆️최고기온: {Math.round(weatherToday?.main?.temp_max)}°C</li>
-              <li>⬇️최저기온: {Math.round(weatherToday?.main?.temp_min)}°C</li>
+              
               <li>💨풍속: {weatherToday?.wind?.speed} m/s</li>
               <li>📈기압: {weatherToday?.main?.pressure} hPa</li>
             </ul>
           </TodayOther>
-        )}
+        )} */}
       </TodayStyle>
       <Outlet/>
-      <Footer/>
+      {/* <Footer/> */}
     </>
     
   );

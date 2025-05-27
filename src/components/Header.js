@@ -1,5 +1,3 @@
-import React from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const WeatherHeader = styled.div`
@@ -26,35 +24,38 @@ const WeatherHeader = styled.div`
     color: #fff;
     cursor: pointer;
   }
-`;
-
-const Menu = styled.ul`
-  display: flex;
-  justify-content: space-around;
-  list-style: none;
-  margin-top: 20px;
-  padding: 0;
-
-  li a {
-    font-size: 20px;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: color 0.3s;
-
-    &:hover {
-      color: rgb(27, 132, 252);
-    }
+  
+  span {
+    text-shadow: 3px 3px 3px hsl(212, 58.90%, 59.00%);
   }
 `;
 
+// const Menu = styled.ul`
+//   display: flex;
+//   justify-content: space-around;
+//   list-style: none;
+//   margin-top: 20px;
+//   padding: 0;
+
+//   li a {
+//     font-size: 20px;
+//     text-decoration: none;
+//     color: #fff;
+//     font-weight: bold;
+//     transition: color 0.3s;
+
+//     &:hover {
+//       color: rgb(27, 132, 252);
+//     }
+//   }
+// `;
+
 function Header(props) {
-  const navigate = useNavigate();
   return (
     <>
       <WeatherHeader>
-        <span className="logo" onClick={() => navigate('/')}>Weather</span>
-    </WeatherHeader>
+        <span className="logo" onClick={() => (window.location.href = '/')}>WEATHER</span>
+      </WeatherHeader>
     </>
   );
 }

@@ -35,6 +35,28 @@ const Spinner = styled.div`
   }
 `;
 
+const ForecastTitle = styled.div`
+  width: 260px;
+  height: 60px;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 15px;
+  position: relative;
+  line-height: 1em;
+    p {
+      font-size: 32px;
+      font-weight: bold;
+      color: #98c8ff;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      margin-top: -0.5em;
+      margin-left: -50%;
+      text-align: center;
+    }
+`;
+
 const ForecastGrid = styled.div`
   background-color: rgb(152, 200, 255);
   display: flex;
@@ -65,13 +87,9 @@ const WeatherCard = styled.div`
 `;
 
 
-
-
 function Week(props) {
   const dispatch = useDispatch();
   const {weather5days, loading, error} = useSelector((state) => state.weathers);
-
-  
 
   useEffect(() => {
     dispatch(fetchWeather5days())
@@ -102,6 +120,11 @@ function Week(props) {
 
   return (
     <>
+      <ForecastTitle>
+        <p>
+          이번주 날씨
+        </p>
+      </ForecastTitle>
       <ForecastGrid>
         {noonList?.map((li, index) => (
           <WeatherCard key={index}>
